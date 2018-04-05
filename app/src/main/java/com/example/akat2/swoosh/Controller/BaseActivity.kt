@@ -1,4 +1,4 @@
-package com.example.akat2.swoosh
+package com.example.akat2.swoosh.Controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

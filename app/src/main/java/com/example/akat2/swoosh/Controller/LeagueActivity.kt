@@ -1,14 +1,17 @@
-package com.example.akat2.swoosh
+package com.example.akat2.swoosh.Controller
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.akat2.swoosh.Model.Player
+import com.example.akat2.swoosh.R
+import com.example.akat2.swoosh.Utilities.EXTRA_PLAYER
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague = ""
+    var player = Player("", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +21,7 @@ class LeagueActivity : BaseActivity() {
     fun leagueNextClicked(view: View) {
         if(menLeagueBtn.isChecked || womenLeagueBtn.isChecked || coedLeagueBtn.isChecked) {
             val skillIntent = Intent(this, SkillActivity::class.java)
-            skillIntent.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillIntent.putExtra(EXTRA_PLAYER, player)
             startActivity(skillIntent)
         }else {
             Toast.makeText(this, "Please select a league", Toast.LENGTH_SHORT).show()
@@ -28,19 +31,19 @@ class LeagueActivity : BaseActivity() {
     fun onMenClicked(view: View) {
         womenLeagueBtn.isChecked = false
         coedLeagueBtn.isChecked = false
-        selectedLeague = "men"
+        player.league = "men"
     }
 
     fun onWomenClicked(view: View) {
         menLeagueBtn.isChecked = false
         coedLeagueBtn.isChecked = false
-        selectedLeague = "women"
+        player.league = "women"
 
     }
 
     fun onCoedClicked(view: View) {
         menLeagueBtn.isChecked = false
         womenLeagueBtn.isChecked = false
-        selectedLeague = "coed"
+        player.league = "coed"
     }
 }
